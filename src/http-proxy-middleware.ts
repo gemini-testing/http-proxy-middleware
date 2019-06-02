@@ -9,16 +9,13 @@ import * as Router from './router';
 
 export class HttpProxyMiddleware {
   private logger = getInstance();
-  private wsUpgradeDebounced;
   private config;
-  private wsInitialized = false;
+  // private wsInitialized = false;
   private proxyOptions;
   private proxy;
   private pathRewriter;
 
   constructor(context, opts) {
-    // https://github.com/chimurai/http-proxy-middleware/issues/57
-    this.wsUpgradeDebounced = _.debounce(this.handleUpgrade);
     this.config = createConfig(context, opts);
     this.proxyOptions = this.config.options;
 
@@ -42,8 +39,7 @@ export class HttpProxyMiddleware {
 
     // https://github.com/chimurai/http-proxy-middleware/issues/19
     // expose function to upgrade externally
-    // middleware.upgrade = wsUpgradeDebounced
-    (this.middleware as any).upgrade = this.wsUpgradeDebounced;
+    (this.middleware as any).upgrade = this.handleUpgrade;
   }
 
   // https://github.com/Microsoft/TypeScript/wiki/'this'-in-TypeScript#red-flags-for-this
@@ -62,18 +58,10 @@ export class HttpProxyMiddleware {
   };
 
   private catchUpgradeRequest = server => {
-    // subscribe once; don't subscribe on every request...
-    // https://github.com/chimurai/http-proxy-middleware/issues/113
-    if (!this.wsInitialized) {
-      server.on('upgrade', this.wsUpgradeDebounced);
-      this.wsInitialized = true;
-    }
+    server.once('upgrade', this.handleUpgrade);
   };
 
   private handleUpgrade = (req, socket, head) => {
-    // set to initialized when used externally
-    this.wsInitialized = true;
-
     if (this.shouldProxy(this.config.context, req)) {
       const activeProxyOptions = this.prepareProxyRequest(req);
       this.proxy.ws(req, socket, head, activeProxyOptions);
