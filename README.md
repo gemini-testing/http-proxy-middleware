@@ -333,7 +333,7 @@ The following options are provided by the underlying [http-proxy](https://github
 - **option.cookieDomainRewrite**: rewrites domain of `set-cookie` headers. Possible values:
   - `false` (default): disable cookie rewriting
   - String: new domain, for example `cookieDomainRewrite: "new.domain"`. To remove the domain, use `cookieDomainRewrite: ""`.
-  - Object: mapping of domains to new domains, use `"*"` to match all domains.  
+  - Object: mapping of domains to new domains, use `"*"` to match all domains.
     For example keep one domain unchanged, rewrite one domain and remove other domains:
     ```
     cookieDomainRewrite: {
@@ -365,7 +365,7 @@ The following options are provided by the underlying [http-proxy](https://github
   'use strict';
 
   const streamify = require('stream-array');
-  const HttpProxy = require('http-proxy');
+  const HttpProxy = require('@gemini-testing/http-proxy');
   const proxy = new HttpProxy();
 
   module.exports = (req, res, next) => {

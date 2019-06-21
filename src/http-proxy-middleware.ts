@@ -1,4 +1,4 @@
-import * as httpProxy from 'http-proxy';
+import * as httpProxy from '@gemini-testing/http-proxy';
 import * as _ from 'lodash';
 import { createConfig } from './config-factory';
 import * as contextMatcher from './context-matcher';

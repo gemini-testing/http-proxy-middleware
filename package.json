@@ -1,5 +1,5 @@
 {
-  "name": "http-proxy-middleware",
+  "name": "@gemini-testing/http-proxy-middleware",
   "version": "0.19.1",
   "description": "The one-liner node.js proxy middleware for connect, express and browser-sync",
   "main": "dist/index.js",
@@ -71,7 +71,7 @@
     "ws": "^7.0.0"
   },
   "dependencies": {
-    "http-proxy": "^1.17.0",
+    "@gemini-testing/http-proxy": "^1.18.0",
     "is-glob": "^4.0.1",
     "lodash": "^4.17.11",
     "micromatch": "^4.0.2"

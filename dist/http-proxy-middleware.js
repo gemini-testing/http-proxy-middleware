@@ -8,7 +8,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const httpProxy = require("http-proxy");
+const httpProxy = require("@gemini-testing/http-proxy");
 const _ = require("lodash");
 const config_factory_1 = require("./config-factory");
 const contextMatcher = require("./context-matcher");
