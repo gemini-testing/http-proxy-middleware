@@ -44,6 +44,8 @@ export class HttpProxyMiddleware {
     // expose function to upgrade externally
     // middleware.upgrade = wsUpgradeDebounced
     (this.middleware as any).upgrade = this.wsUpgradeDebounced;
+
+    (this.middleware as any).proxy = this.proxy;
   }
 
   // https://github.com/Microsoft/TypeScript/wiki/'this'-in-TypeScript#red-flags-for-this

@@ -136,6 +136,7 @@ class HttpProxyMiddleware {
         // expose function to upgrade externally
         // middleware.upgrade = wsUpgradeDebounced
         this.middleware.upgrade = this.wsUpgradeDebounced;
+        this.middleware.proxy = this.proxy;
     }
 }
 exports.HttpProxyMiddleware = HttpProxyMiddleware;
