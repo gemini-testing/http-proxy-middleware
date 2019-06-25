@@ -270,10 +270,10 @@
   dependencies:
     find-up "^2.1.0"
 
-"@gemini-testing/http-proxy@^1.18.0":
-  version "1.18.0"
-  resolved "https://registry.yarnpkg.com/@gemini-testing/http-proxy/-/http-proxy-1.18.0.tgz#5003cfa73b84f7df65a589b00e717953c830d52c"
-  integrity sha512-jORTSg2pC4nTHJ5pJYj6xwPg955Zb+f5J3DvYzOEl6xMlTbBlvH0s5t0E8IP6T0WXR/5vJRl4c0AkYPjueQ1vQ==
+"@gemini-testing/http-proxy@^1.19.0":
+  version "1.19.0"
+  resolved "https://registry.yarnpkg.com/@gemini-testing/http-proxy/-/http-proxy-1.19.0.tgz#f13a2b93d7c23ddcfd64a11250b4a3c51e8cb4f3"
+  integrity sha512-Rt6Pi96uvvh2w7xVh7VZaryJYOjuvwfgQ459qe9YpSqhWWdejuGzHTVAm1Fy9UnuB7bB9NKCATED3pytatkjSA==
   dependencies:
     eventemitter3 "^3.0.0"
     follow-redirects "^1.0.0"
