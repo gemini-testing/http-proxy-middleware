@@ -71,7 +71,7 @@
     "ws": "^7.0.0"
   },
   "dependencies": {
-    "@gemini-testing/http-proxy": "^1.18.1",
+    "@gemini-testing/http-proxy": "^1.19.0",
     "is-glob": "^4.0.1",
     "lodash": "^4.17.11",
     "micromatch": "^4.0.2"
