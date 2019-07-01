@@ -132,11 +132,7 @@ class HttpProxyMiddleware {
         handlers.init(this.proxy, this.proxyOptions);
         // log errors for debug purpose
         this.proxy.on('error', this.logError);
-        // https://github.com/chimurai/http-proxy-middleware/issues/19
-        // expose function to upgrade externally
-        // middleware.upgrade = wsUpgradeDebounced
-        this.middleware.upgrade = this.wsUpgradeDebounced;
-        this.middleware.proxy = this.proxy;
+        this.upgrade = this.wsUpgradeDebounced;
     }
 }
 exports.HttpProxyMiddleware = HttpProxyMiddleware;

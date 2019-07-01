@@ -14,6 +14,7 @@ export class HttpProxyMiddleware {
   private wsInitialized = false;
   private proxyOptions;
   private proxy;
+  private upgrade;
   private pathRewriter;
 
   constructor(context, opts) {
@@ -40,12 +41,7 @@ export class HttpProxyMiddleware {
     // log errors for debug purpose
     this.proxy.on('error', this.logError);
 
-    // https://github.com/chimurai/http-proxy-middleware/issues/19
-    // expose function to upgrade externally
-    // middleware.upgrade = wsUpgradeDebounced
-    (this.middleware as any).upgrade = this.wsUpgradeDebounced;
-
-    (this.middleware as any).proxy = this.proxy;
+    this.upgrade = this.wsUpgradeDebounced;
   }
 
   // https://github.com/Microsoft/TypeScript/wiki/'this'-in-TypeScript#red-flags-for-this
