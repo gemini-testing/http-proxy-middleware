@@ -38,11 +38,11 @@ class HttpProxyMiddleware {
             // subscribe once; don't subscribe on every request...
             // https://github.com/chimurai/http-proxy-middleware/issues/113
             if (!this.wsInitialized) {
-                server.on('upgrade', this.wsUpgradeDebounced);
+                server.on('upgrade', this.upgrade);
                 this.wsInitialized = true;
             }
         };
-        this.handleUpgrade = (req, socket, head) => {
+        this.upgrade = (req, socket, head) => {
             // set to initialized when used externally
             this.wsInitialized = true;
             if (this.shouldProxy(this.config.context, req)) {
@@ -120,8 +120,6 @@ class HttpProxyMiddleware {
             const errReference = 'https://nodejs.org/api/errors.html#errors_common_system_errors'; // link to Node Common Systems Errors page
             this.logger.error(errorMessage, req.url, hostname, target, err.code || err, errReference);
         };
-        // https://github.com/chimurai/http-proxy-middleware/issues/57
-        this.wsUpgradeDebounced = _.debounce(this.handleUpgrade);
         this.config = config_factory_1.createConfig(context, opts);
         this.proxyOptions = this.config.options;
         // create proxy
@@ -132,11 +130,6 @@ class HttpProxyMiddleware {
         handlers.init(this.proxy, this.proxyOptions);
         // log errors for debug purpose
         this.proxy.on('error', this.logError);
-        // https://github.com/chimurai/http-proxy-middleware/issues/19
-        // expose function to upgrade externally
-        // middleware.upgrade = wsUpgradeDebounced
-        this.middleware.upgrade = this.wsUpgradeDebounced;
-        this.middleware.proxy = this.proxy;
     }
 }
 exports.HttpProxyMiddleware = HttpProxyMiddleware;
